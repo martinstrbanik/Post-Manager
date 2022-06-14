@@ -1,0 +1,39 @@
+Vytvor microservice v Jave, ktorý bude sprostredkovať RESTful API na manažovanie príspevkov používateľov. Formát príspevku je nasledovný:
+- id: integer
+- userId: integer
+- title: string
+- body: string
+
+Funkčné požiadavky:
+- Pridanie príspevku - potrebné validovať userID pomocou externej API
+- Zobrazenie príspevku
+   - na základe id alebo userId
+   - ak sa príspevok nenájde v systéme, je potrebné ho dohľadať pomocou externej API a uložiť (platné iba pre vyhľadávanie pomocou id príspevku)
+- Odstránenie príspevku
+- Upravenie príspevku - možnosť meniť title a body
+
+Externú API nájdeš na linku https://jsonplaceholder.typicode.com/ - používaj endpointy users a posts.
+
+Všeobecné požiadavky:
+- ReadMe s popisom inštalácie a prvého spustenia
+- Dokumentácia API (napr. Swagger)
+- Validácia vstupných dát
+- Použitie ORM
+
+Riešenie by malo demonštrovať schopnosti pracovať s (čím viac tým lepšie):
+- ORM
+- REST
+- Práca s API tretích strán
+- Validácia vstupov
+- Error handling
+- Rozumným štrukturovaním zdrojových kódov aplikácie
+
+Použitie frameworku Spring Boot vítaná.
+
+Voliteľné úlohy:
+- neposkytovať iba API, ale poskytovať aj jednoduchý frontend podporujúci tieto funkcie
+- kontajnerizácia (napr. cez Docker)
+
+Pri kódení sa zameraj hlavne na čistotu kódu a využívanie správnych vzorov, štýlov, funkcií a princípov jazyka.
+
+Zadanie zaves na svoj Github a pošli mi link, aby sme si to vedeli pozrieť. Zároveň si prosím poznač, koľko hodín si strávil na zadaní.
