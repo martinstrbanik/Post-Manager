@@ -1,5 +1,6 @@
 package com.strbanik.PostManager.controller;
 
+import com.strbanik.PostManager.dto.model.PostDto;
 import com.strbanik.PostManager.model.Post;
 import com.strbanik.PostManager.service.PostService;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class PostController {
     }
 
     @GetMapping(value = "/getAllPosts")
-    public List<Post> getAllPosts(){
+    public List<PostDto> getAllPosts(){
         return postService.getAllPosts();
     }
 }

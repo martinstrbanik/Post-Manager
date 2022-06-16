@@ -1,5 +1,6 @@
 package com.strbanik.PostManager.controller;
 
+import com.strbanik.PostManager.dto.model.UserDto;
 import com.strbanik.PostManager.model.Post;
 import com.strbanik.PostManager.model.User;
 import com.strbanik.PostManager.service.UserService;
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/getAllUsers")
-    public List<User> getAllUsers(){
+    public List<UserDto> getAllUsers(){
         return userService.getAllUsers();
     }
 
