@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,5 +43,5 @@ public class User {
     private Company company;
 
     @OneToMany(mappedBy="owner")
-    private Set<Post> posts;
+    private List<Post> posts;
 }
