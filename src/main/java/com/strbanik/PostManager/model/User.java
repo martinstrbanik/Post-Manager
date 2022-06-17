@@ -20,16 +20,6 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(generator = "sequence-generator")
-    @GenericGenerator(
-            name = "sequence-generator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "user_sequence"),
-                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "101"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
-            }
-    )
     private int id;
     private String name;
     private String username;
@@ -42,6 +32,4 @@ public class User {
     @Embedded
     private Company company;
 
-    @OneToMany(mappedBy="owner")
-    private List<Post> posts;
 }

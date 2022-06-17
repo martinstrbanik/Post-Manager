@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PostRepository extends CrudRepository<Post, Integer> {
     List<Post> findAll();
+    List<Post> findAllByUserId(int userId);
 }
