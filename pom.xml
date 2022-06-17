@@ -44,7 +44,7 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

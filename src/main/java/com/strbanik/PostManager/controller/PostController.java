@@ -14,9 +14,9 @@ import java.util.List;
 
 
 @RestController
-@AllArgsConstructor
 public class PostController {
 
+    @Autowired
     PostService postService;
 
     @PostMapping(value = "/addPost")

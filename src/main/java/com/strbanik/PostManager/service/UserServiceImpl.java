@@ -5,6 +5,7 @@ import com.strbanik.PostManager.dto.model.UserDto;
 import com.strbanik.PostManager.model.User;
 import com.strbanik.PostManager.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-@AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
+    @Autowired
     UserRepository userRepository;
 
     @Override

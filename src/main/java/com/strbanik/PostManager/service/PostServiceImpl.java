@@ -4,16 +4,16 @@ import com.strbanik.PostManager.dto.mapper.PostMapper;
 import com.strbanik.PostManager.dto.model.PostDto;
 import com.strbanik.PostManager.model.Post;
 import com.strbanik.PostManager.repository.PostRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class PostServiceImpl implements PostService{
 
+    @Autowired
     PostRepository postRepository;
 
     @Override
