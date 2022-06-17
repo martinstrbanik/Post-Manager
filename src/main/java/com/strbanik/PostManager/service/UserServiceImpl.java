@@ -7,7 +7,9 @@ import com.strbanik.PostManager.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,5 +30,16 @@ public class UserServiceImpl implements UserService{
         return this.userRepository.findAll().stream()
                 .map(UserMapper::toUserDto)
                 .collect(Collectors.toList());
+
+//        List<UserDto> userDtos = new ArrayList<>();
+//        userDtos.add(getUserFromExternalApi(25));
+//        userDtos.add(getUserFromExternalApi(11));
+//        return userDtos;
+    }
+
+    @Override
+    public UserDto getUserFromExternalApi(int userId) {
+        RestTemplate restTemplate =new RestTemplate();
+        return restTemplate.getForObject("https://jsonplaceholder.typicode.com/users/" + userId, UserDto.class);
     }
 }
