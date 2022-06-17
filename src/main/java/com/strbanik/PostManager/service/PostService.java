@@ -7,7 +7,7 @@ import com.strbanik.PostManager.model.Post;
 import java.util.List;
 
 public interface PostService {
-    void addPost(Post post);
+    void addPost(Post post) throws GenericException;
     PostDto getPostById(int postId) throws GenericException;
     List<PostDto> getPostsByUserId(int userId);
     void deletePost(int postId);

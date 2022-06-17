@@ -19,7 +19,7 @@ public class PostController {
     PostService postService;
 
     @PostMapping(value = "/addPost")
-    public void addPost(@Valid @RequestBody Post post){
+    public void addPost(@Valid @RequestBody Post post) throws GenericException{
         postService.addPost(post);
     }
 

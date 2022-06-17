@@ -1,6 +1,7 @@
 package com.strbanik.PostManager.service;
 
 import com.strbanik.PostManager.dto.mapper.UserMapper;
+import com.strbanik.PostManager.dto.model.PostDto;
 import com.strbanik.PostManager.dto.model.UserDto;
 import com.strbanik.PostManager.model.User;
 import com.strbanik.PostManager.repository.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,8 +41,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto getUserFromExternalApi(int userId) {
+    public List<UserDto> getUserFromExternalApi() {
         RestTemplate restTemplate =new RestTemplate();
-        return restTemplate.getForObject("https://jsonplaceholder.typicode.com/users/" + userId, UserDto.class);
+        UserDto[] userDtos = restTemplate.getForObject("https://jsonplaceholder.typicode.com/users", UserDto[].class);
+        return Arrays.stream(userDtos).toList();
     }
 }

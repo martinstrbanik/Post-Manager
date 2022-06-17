@@ -27,11 +27,14 @@ public class PostServiceImpl implements PostService{
     UserService userService;
 
     @Override
-    public void addPost(Post post) {
-        if (userService.getUserFromExternalApi(post.getUserId())!=null)
-        postRepository.save(post);
-        else
-            System.out.println("hahaaa");
+    public void addPost(Post post) throws GenericException{
+        if (userService.getUserFromExternalApi().stream()
+        .anyMatch(userDto -> userDto.getId()==post.getUserId())){
+            postRepository.save(post);
+        }
+        else {
+            throw new GenericException("UserId is not valid!");
+        }
 
 
     }
