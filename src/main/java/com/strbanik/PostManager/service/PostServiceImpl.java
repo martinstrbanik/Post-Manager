@@ -38,7 +38,7 @@ public class PostServiceImpl implements PostService{
             postRepository.save(PostMapper.toPost(postDto));
         }
         else {
-            throw new GenericException("UserId is not valid!");
+            throw new GenericException("User with specified userId was not found");
         }
 
 
@@ -60,7 +60,7 @@ public class PostServiceImpl implements PostService{
             return postDtos.get(0);
         }
         else {
-            throw new GenericException("Post not found");
+            throw new GenericException("Post with such id was not found");
         }
     }
 
@@ -77,7 +77,7 @@ public class PostServiceImpl implements PostService{
             postRepository.deleteById(postId);
         }
         else {
-            throw new GenericException("Post not found");
+            throw new GenericException("Post with such id was not found");
         }
     }
 
@@ -85,7 +85,7 @@ public class PostServiceImpl implements PostService{
     public void editPost(PostDto postDto) throws GenericException{
         if (userService.getUserFromExternalApi().stream()
                 .noneMatch(userDto -> userDto.getId()==postDto.getUserId())){
-            throw new GenericException("UserId is not valid");
+            throw new GenericException("User with specified userId was not found");
         }
         else if (postRepository.findById(postDto.getId()).isPresent()) {
             Post currentPost = postRepository.findById(postDto.getId()).get();
@@ -97,7 +97,7 @@ public class PostServiceImpl implements PostService{
             );
         }
         else {
-            throw new GenericException("Post not found");
+            throw new GenericException("Post with such id was not found");
         }
     }
 
