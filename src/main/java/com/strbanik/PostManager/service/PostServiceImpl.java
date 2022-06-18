@@ -1,5 +1,6 @@
 package com.strbanik.PostManager.service;
 
+import ch.qos.logback.core.joran.conditional.IfAction;
 import com.strbanik.PostManager.dto.mapper.PostMapper;
 import com.strbanik.PostManager.dto.model.PostDto;
 import com.strbanik.PostManager.dto.model.UserDto;
@@ -28,13 +29,13 @@ public class PostServiceImpl implements PostService{
     UserService userService;
 
     @Override
-    public void addPost(Post post) throws GenericException{
-        if (postRepository.findById(post.getId()).isPresent()){
+    public void addPost(PostDto postDto) throws GenericException{
+        if (postRepository.findById(postDto.getId()).isPresent()){
             throw new GenericException("Post with the same id already exists");
         }
         else if (userService.getUserFromExternalApi().stream()
-        .anyMatch(userDto -> userDto.getId()==post.getUserId())){
-            postRepository.save(post);
+        .anyMatch(userDto -> userDto.getId()==postDto.getUserId())){
+            postRepository.save(PostMapper.toPost(postDto));
         }
         else {
             throw new GenericException("UserId is not valid!");
@@ -81,8 +82,23 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public void editPost(int postId) {
-
+    public void editPost(PostDto postDto) throws GenericException{
+        if (userService.getUserFromExternalApi().stream()
+                .noneMatch(userDto -> userDto.getId()==postDto.getUserId())){
+            throw new GenericException("UserId is not valid");
+        }
+        else if (postRepository.findById(postDto.getId()).isPresent()) {
+            Post currentPost = postRepository.findById(postDto.getId()).get();
+            postRepository.save(
+                    currentPost
+                            .setUserId(postDto.getUserId())
+                            .setTitle(postDto.getTitle())
+                            .setBody(postDto.getBody())
+            );
+        }
+        else {
+            throw new GenericException("Post not found");
+        }
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PostService {
 
-    void addPost(Post post) throws GenericException;
+    void addPost(PostDto postDto) throws GenericException;
 
     PostDto getPostById(int postId) throws GenericException;
 
@@ -16,7 +16,7 @@ public interface PostService {
 
     void deletePost(int postId) throws GenericException;
 
-    void editPost(int postId);
+    void editPost(PostDto postDto) throws GenericException;
 
     // Method used just for testing - will remove later
     List<PostDto> getAllPosts();

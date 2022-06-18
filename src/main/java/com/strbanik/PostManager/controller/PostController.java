@@ -20,8 +20,8 @@ public class PostController {
     PostService postService;
 
     @PostMapping(value = "/addPost")
-    public void addPost(@Valid @RequestBody Post post) throws GenericException{
-        postService.addPost(post);
+    public void addPost(@Valid @RequestBody PostDto postDto) throws GenericException{
+        postService.addPost(postDto);
     }
 
     // Request just for testing - will remove later
@@ -31,17 +31,22 @@ public class PostController {
     }
 
     @GetMapping(value = "/getPostsByUserId/{id}")
-    public List<PostDto> getPostsByUserId(@Valid @PathVariable("id")int userId){
+    public List<PostDto> getPostsByUserId(@PathVariable("id")int userId){
         return postService.getPostsByUserId(userId);
     }
 
     @GetMapping(value = "/getPostById/{id}")
-    public PostDto getPostById(@Valid @PathVariable("id") int postId) throws GenericException {
+    public PostDto getPostById(@PathVariable("id") int postId) throws GenericException {
         return postService.getPostById(postId);
     }
 
     @DeleteMapping(value = "/deletePostById/{id}")
     public void deletePostById(@PathVariable("id")int postId) throws GenericException{
         postService.deletePost(postId);
+    }
+
+    @PutMapping(value = "/editPost")
+    public void deletePostById(@Valid @RequestBody PostDto postDto) throws GenericException{
+        postService.editPost(postDto);
     }
 }
