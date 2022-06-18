@@ -13,6 +13,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/post")
 public class PostController {
 
     @Autowired
@@ -29,13 +30,18 @@ public class PostController {
         return postService.getAllPosts();
     }
 
-    @GetMapping(value = "/getPostsByUserId")
-    public List<PostDto> getPostsByUserId(@Valid @RequestParam int userId){
+    @GetMapping(value = "/getPostsByUserId/{id}")
+    public List<PostDto> getPostsByUserId(@Valid @PathVariable("id")int userId){
         return postService.getPostsByUserId(userId);
     }
 
-    @GetMapping(value = "/getPostById")
-    public PostDto getPostById(@Valid @RequestParam int postId) throws GenericException {
+    @GetMapping(value = "/getPostById/{id}")
+    public PostDto getPostById(@Valid @PathVariable("id") int postId) throws GenericException {
         return postService.getPostById(postId);
+    }
+
+    @DeleteMapping(value = "/deletePostById/{id}")
+    public void deletePostById(@PathVariable("id")int postId) throws GenericException{
+        postService.deletePost(postId);
     }
 }

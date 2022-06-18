@@ -14,6 +14,7 @@ import javax.validation.constraints.AssertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,7 +29,10 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public void addPost(Post post) throws GenericException{
-        if (userService.getUserFromExternalApi().stream()
+        if (postRepository.findById(post.getId()).isPresent()){
+            throw new GenericException("Post with the same id already exists");
+        }
+        else if (userService.getUserFromExternalApi().stream()
         .anyMatch(userDto -> userDto.getId()==post.getUserId())){
             postRepository.save(post);
         }
@@ -67,8 +71,13 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public void deletePost(int postId) {
-
+    public void deletePost(int postId) throws GenericException{
+        if(!postRepository.findById(postId).equals(Optional.empty())) {
+            postRepository.deleteById(postId);
+        }
+        else {
+            throw new GenericException("Post not found");
+        }
     }
 
     @Override
