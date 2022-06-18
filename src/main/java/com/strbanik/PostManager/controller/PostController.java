@@ -23,18 +23,19 @@ public class PostController {
         postService.addPost(post);
     }
 
+    // Request just for testing - will remove later
     @GetMapping(value = "/getAllPosts")
     public List<PostDto> getAllPosts(){
         return postService.getAllPosts();
     }
 
     @GetMapping(value = "/getPostsByUserId")
-    public List<PostDto> getPostsByUserId(@RequestParam int userId){
+    public List<PostDto> getPostsByUserId(@Valid @RequestParam int userId){
         return postService.getPostsByUserId(userId);
     }
 
     @GetMapping(value = "/getPostById")
-    public PostDto getPostById(@RequestParam int postId) throws GenericException {
+    public PostDto getPostById(@Valid @RequestParam int postId) throws GenericException {
         return postService.getPostById(postId);
     }
 }

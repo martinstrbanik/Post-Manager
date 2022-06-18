@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,11 +20,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    // Only used for testing
     @PostMapping(value = "/addUser")
-    public void addPost(@RequestBody User user){
+    public void addPost(@Valid @RequestBody User user){
         userService.addUser(user);
     }
 
+    // Only used for testing
     @GetMapping(value = "/getAllUsers")
     public List<UserDto> getAllUsers(){
         return userService.getAllUsers();

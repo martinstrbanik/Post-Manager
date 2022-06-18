@@ -33,11 +33,6 @@ public class UserServiceImpl implements UserService{
         return this.userRepository.findAll().stream()
                 .map(UserMapper::toUserDto)
                 .collect(Collectors.toList());
-
-//        List<UserDto> userDtos = new ArrayList<>();
-//        userDtos.add(getUserFromExternalApi(25));
-//        userDtos.add(getUserFromExternalApi(11));
-//        return userDtos;
     }
 
     @Override

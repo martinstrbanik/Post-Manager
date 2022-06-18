@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
@@ -20,16 +24,24 @@ import java.util.Set;
 public class User {
 
     @Id
+    @NotNull
     private int id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String username;
+    @Email
     private String email;
+    @NotBlank
     private String phone;
+    @NotBlank
     private String website;
 
     @Embedded
+    @Valid
     private Address address;
     @Embedded
+    @Valid
     private Company company;
 
 }
