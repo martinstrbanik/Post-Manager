@@ -20,11 +20,9 @@ import java.util.Set;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class User {
 
     @Id
-    @NotNull
     private int id;
     @NotBlank
     private String name;
