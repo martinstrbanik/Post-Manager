@@ -13,4 +13,13 @@ public class PostMapper {
                .setBody(post.getBody())
                .setTitle(post.getTitle());
    }
+
+    public static Post toPost(PostDto postDto){
+        return new Post()
+                .setId(postDto.getId())
+                .setUserId(postDto.getUserId())
+                .setBody(postDto.getBody())
+                .setTitle(postDto.getTitle());
+    }
+
 }

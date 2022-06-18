@@ -3,38 +3,30 @@ package com.strbanik.PostManager.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
 @Data
 @Table
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+@AllArgsConstructor
+@Accessors(chain = true)
 public class Post {
 
     @Id
-    @GeneratedValue(generator = "sequence-generator")
-    @GenericGenerator(
-            name = "sequence-generator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "post_sequence"),
-                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "101"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
-            }
-    )
     private int id;
+    @NotBlank
     private String title;
+    @NotBlank
     private String body;
-
-    @ManyToOne
-    @JoinColumn(name="userId", nullable=false, insertable = false, updatable = false)
-    private User owner;
-
-    @Column(name = "userId")
+    @NotNull
     private int userId;
 
 

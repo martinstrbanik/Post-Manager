@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
@@ -16,32 +20,26 @@ import java.util.Set;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class User {
 
     @Id
-    @GeneratedValue(generator = "sequence-generator")
-    @GenericGenerator(
-            name = "sequence-generator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "user_sequence"),
-                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "101"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
-            }
-    )
     private int id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String username;
+    @Email
     private String email;
+    @NotBlank
     private String phone;
+    @NotBlank
     private String website;
 
     @Embedded
+    @Valid
     private Address address;
     @Embedded
+    @Valid
     private Company company;
 
-    @OneToMany(mappedBy="owner")
-    private List<Post> posts;
 }
