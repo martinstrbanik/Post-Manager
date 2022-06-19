@@ -16,7 +16,9 @@ public interface PostService {
 
     void deletePost(int postId) throws GenericException;
 
-    void editPost(PostDto postDto) throws GenericException;
+    void editTitle(int postId, String title) throws GenericException;
+
+    void editBody(int postId, String body) throws GenericException;
 
     // Method used just for testing - will remove later
     List<PostDto> getAllPosts();
