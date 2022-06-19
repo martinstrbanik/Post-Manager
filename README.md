@@ -11,17 +11,19 @@
 
 ## Installation of the project
 
-1. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows) community version and click Get from VCS
+- Make sure you have installed [JDK 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) and also that Java path and JAVA_HOME is set 
+  correctly set in [environment variables](https://www.ibm.com/docs/en/b2b-integrator/5.2?topic=installation-setting-java-variables-in-windows)
+  
+- Download jar file from https://drive.google.com/file/d/1PJ9Qe45LjdxgcorbM5BfDFaJKxl2s4Sm/view?usp=sharing
 
-    ![IntelliJ IDEA get from VCS](https://github.com/martinstrbanik/Post-Manager/blob/main/IntelliJ1.png)
-   
-2. https://github.com/martinstrbanik/Post-Manager.git copy this url, select directory and click clone
+- Put the jar file into your preferred directory
 
-   ![IntelliJ IDEA clone](https://github.com/martinstrbanik/Post-Manager/blob/main/IntelliJ2.png)
+- Launch cmd.exe, get into the directory where the jar file is located using **cd** command
+  and type following command:
+>java -jar Post-Manager-0.0.1-SNAPSHOT.jar
 
-3. Expand *src/main/java/com.strbanik.PostManager*
-4. Choose **Add Configuration** on the toolbar 
-5. Click Add new run configuration, choose Java Scratch
+- The application should be running now, you can head over to browser to 
+  make requests
 
 ## Using the project
 
