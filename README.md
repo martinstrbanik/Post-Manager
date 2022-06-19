@@ -18,3 +18,27 @@
 2. https://github.com/martinstrbanik/Post-Manager.git copy this url, select directory and click clone
 
    ![IntelliJ IDEA clone](https://github.com/martinstrbanik/Post-Manager/blob/main/IntelliJ2.png)
+
+3. Expand *src/main/java/com.strbanik.PostManager*
+4. Choose **Add Configuration** on the toolbar 
+5. Click Add new run configuration, choose Java Scratch
+
+## Using the project
+
+This project features multiple requests:
+
+
+- Adding posts by passing JSON object
+> http://localhost:8080/post/addPost
+
+- Getting posts by defined userId
+> http://localhost:8080/post/getPostsByUserId/{userId}
+
+- Getting post by defined postId
+> http://localhost:8080/post/getPostById/{postId}
+
+- Deleting post by defined postId
+> http://localhost:8080/post/deletePostById/{postId}
+
+- Editing post by passing JSON object
+> http://localhost:8080/post/editPost
