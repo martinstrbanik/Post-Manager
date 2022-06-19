@@ -1,9 +1,7 @@
 package com.strbanik.PostManager.service;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
 import com.strbanik.PostManager.dto.mapper.PostMapper;
 import com.strbanik.PostManager.dto.model.PostDto;
-import com.strbanik.PostManager.dto.model.UserDto;
 import com.strbanik.PostManager.exception.GenericException;
 import com.strbanik.PostManager.model.Post;
 import com.strbanik.PostManager.repository.PostRepository;
@@ -11,13 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.validation.constraints.AssertTrue;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class PostServiceImpl implements PostService{
@@ -33,12 +28,12 @@ public class PostServiceImpl implements PostService{
         if (postRepository.findById(postDto.getId()).isPresent()){
             throw new GenericException("Post with the same id already exists");
         }
-        else if (userService.getUserFromExternalApi().stream()
+        else if (userService.getUsersFromExternalApi().stream()
         .anyMatch(userDto -> userDto.getId()==postDto.getUserId())){
             postRepository.save(PostMapper.toPost(postDto));
         }
         else {
-            throw new GenericException("UserId is not valid!");
+            throw new GenericException("User with specified userId was not found");
         }
 
 
@@ -60,7 +55,7 @@ public class PostServiceImpl implements PostService{
             return postDtos.get(0);
         }
         else {
-            throw new GenericException("Post not found");
+            throw new GenericException("Post with such id was not found");
         }
     }
 
@@ -77,15 +72,15 @@ public class PostServiceImpl implements PostService{
             postRepository.deleteById(postId);
         }
         else {
-            throw new GenericException("Post not found");
+            throw new GenericException("Post with such id was not found");
         }
     }
 
     @Override
     public void editPost(PostDto postDto) throws GenericException{
-        if (userService.getUserFromExternalApi().stream()
+        if (userService.getUsersFromExternalApi().stream()
                 .noneMatch(userDto -> userDto.getId()==postDto.getUserId())){
-            throw new GenericException("UserId is not valid");
+            throw new GenericException("User with specified userId was not found");
         }
         else if (postRepository.findById(postDto.getId()).isPresent()) {
             Post currentPost = postRepository.findById(postDto.getId()).get();
@@ -97,7 +92,7 @@ public class PostServiceImpl implements PostService{
             );
         }
         else {
-            throw new GenericException("Post not found");
+            throw new GenericException("Post with such id was not found");
         }
     }
 

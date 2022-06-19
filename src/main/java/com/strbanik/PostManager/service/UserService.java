@@ -11,6 +11,6 @@ public interface UserService {
 
     List<UserDto> getAllUsers();
 
-    List<UserDto> getUserFromExternalApi();
+    List<UserDto> getUsersFromExternalApi();
 
 }

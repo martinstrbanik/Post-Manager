@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<UserDto> getUserFromExternalApi() {
+    public List<UserDto> getUsersFromExternalApi() {
         RestTemplate restTemplate =new RestTemplate();
         UserDto[] userDtos = restTemplate.getForObject("https://jsonplaceholder.typicode.com/users", UserDto[].class);
         return Arrays.stream(userDtos).toList();

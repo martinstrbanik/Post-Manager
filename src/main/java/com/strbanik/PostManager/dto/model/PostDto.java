@@ -1,11 +1,12 @@
 package com.strbanik.PostManager.dto.model;
 
-import com.strbanik.PostManager.model.Address;
-import com.strbanik.PostManager.model.Company;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +14,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class PostDto {
     private int id;
+    @NotBlank
     private String title;
+    @NotBlank
     private String body;
+    @NotNull
     private int userId;
 }
