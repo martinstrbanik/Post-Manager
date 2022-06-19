@@ -13,6 +13,8 @@
 
 1. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows) community version and click Get from VCS
 
-    ![IntelliJ IDEA get from VCS](https://github.com/martinstrbanik/Post-Manager/blob/main/IntelliJ1.png)
+    ![IntelliJ IDEA get from VCS](/blob/readMe/IntelliJ1.png)
    
-2. 
+2. https://github.com/martinstrbanik/Post-Manager.git copy this url, select directory and click clone
+
+   ![IntelliJ IDEA clone](/blob/readMe/IntelliJ2.png)
