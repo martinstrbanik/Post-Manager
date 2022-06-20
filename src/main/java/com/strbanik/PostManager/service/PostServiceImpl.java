@@ -77,20 +77,24 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public void editPost(PostDto postDto) throws GenericException{
-        if (userService.getUsersFromExternalApi().stream()
-                .noneMatch(userDto -> userDto.getId()==postDto.getUserId())){
-            throw new GenericException("User with specified userId was not found");
+    public void editTitle(int postId, String title) throws GenericException {
+        if (postRepository.findById(postId).isPresent()) {
+            Post currentPost = postRepository.findById(postId).get();
+            postRepository.save(currentPost.setTitle(title));
         }
-        else if (postRepository.findById(postDto.getId()).isPresent()) {
-            Post currentPost = postRepository.findById(postDto.getId()).get();
-            postRepository.save(
-                    currentPost
-                            .setUserId(postDto.getUserId())
-                            .setTitle(postDto.getTitle())
-                            .setBody(postDto.getBody())
-            );
+
+        else {
+            throw new GenericException("Post with such id was not found");
         }
+    }
+
+    @Override
+    public void editBody(int postId, String body) throws GenericException {
+        if (postRepository.findById(postId).isPresent()) {
+            Post currentPost = postRepository.findById(postId).get();
+            postRepository.save(currentPost.setBody(body));
+        }
+
         else {
             throw new GenericException("Post with such id was not found");
         }

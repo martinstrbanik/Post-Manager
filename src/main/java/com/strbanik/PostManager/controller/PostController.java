@@ -6,14 +6,17 @@ import com.strbanik.PostManager.model.Post;
 import com.strbanik.PostManager.service.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/api/post")
 public class PostController {
 
     @Autowired
@@ -45,8 +48,14 @@ public class PostController {
         postService.deletePost(postId);
     }
 
-    @PutMapping(value = "/editPost")
-    public void deletePostById(@Valid @RequestBody PostDto postDto) throws GenericException{
-        postService.editPost(postDto);
+    @PutMapping(value = "/editPost/title")
+    public void editPostTitle(@RequestParam int postId, @RequestParam String title) throws GenericException{
+        postService.editTitle(postId, title);
+
+    }
+
+    @PutMapping(value = "/editPost/body")
+    public void editPostBody(@RequestParam int postId, @RequestParam String body) throws GenericException{
+        postService.editBody(postId, body);
     }
 }
