@@ -8,6 +8,7 @@
 
 - Post-Manager is a simple project made for creating and managing posts
 - Written in [Java](https://www.java.com/en/download/help/whatis_java.html) using [SpringBoot](https://spring.io/projects/spring-boot)
+- The database is **volatile**, so the data will be lost if you restart the project
 
 ## Installation of the project
 
