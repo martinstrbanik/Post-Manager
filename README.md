@@ -44,3 +44,6 @@ This project features multiple requests:
 
 - Editing post by passing JSON object
 > http://localhost:8080/post/editPost
+
+- To open documentation
+> http://localhost:8080/swagger-ui.html
