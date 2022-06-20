@@ -101,13 +101,6 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<PostDto> getAllPosts() {
-        return this.postRepository.findAll().stream()
-                .map(PostMapper::toPostDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<PostDto> getPostsFromExternalApi() {
         RestTemplate restTemplate =new RestTemplate();
         PostDto[] postDtos = restTemplate.getForObject("https://jsonplaceholder.typicode.com/posts", PostDto[].class);

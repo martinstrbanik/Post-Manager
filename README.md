@@ -14,7 +14,7 @@
 - Make sure you have installed [JDK 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) and also that Java path and JAVA_HOME is set 
   correctly set in [environment variables](https://www.ibm.com/docs/en/b2b-integrator/5.2?topic=installation-setting-java-variables-in-windows)
   
-- Download jar file from https://drive.google.com/file/d/1PJ9Qe45LjdxgcorbM5BfDFaJKxl2s4Sm/view?usp=sharing
+- Download jar file from https://drive.google.com/file/d/1fWi_NvyEYnwt0HS7gXBk3__r_0LSMjG_/view?usp=sharing
 
 - Put the jar file into your preferred directory
 
@@ -31,16 +31,22 @@ This project features multiple requests:
 
 
 - Adding posts by passing JSON object
-> http://localhost:8080/post/addPost
+> http://localhost:8080/api/post/addPost
 
 - Getting posts by defined userId
-> http://localhost:8080/post/getPostsByUserId/{userId}
+> http://localhost:8080/api/post/getPostsByUserId/{userId}
 
 - Getting post by defined postId
-> http://localhost:8080/post/getPostById/{postId}
+> http://localhost:8080/api/post/getPostById/{postId}
 
 - Deleting post by defined postId
-> http://localhost:8080/post/deletePostById/{postId}
+> http://localhost:8080/api/post/deletePostById/{postId}
 
-- Editing post by passing JSON object
-> http://localhost:8080/post/editPost
+- Editing post title by defined title parameter and postId parameter
+> http://localhost:8080/api/post/editPost/title
+
+- Editing post body by defined body parameter and postId parameter
+> http://localhost:8080/api/post/editPost/body
+
+- To open documentation
+> http://localhost:8080/swagger-ui.html
