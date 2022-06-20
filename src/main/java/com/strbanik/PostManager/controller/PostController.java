@@ -16,8 +16,7 @@ import java.util.List;
 
 
 @RestController
-@Validated
-@RequestMapping("/post")
+@RequestMapping("/api/post")
 public class PostController {
 
     @Autowired
@@ -50,14 +49,13 @@ public class PostController {
     }
 
     @PutMapping(value = "/editPost/title")
-    public ResponseEntity<String> editPostTitle(@RequestParam int postId, @RequestParam @NotBlank String title) throws GenericException{
+    public void editPostTitle(@RequestParam int postId, @RequestParam String title) throws GenericException{
         postService.editTitle(postId, title);
-        return ResponseEntity.ok("jjjjjjjjjj");
 
     }
 
     @PutMapping(value = "/editPost/body")
-    public void editPostBody(@RequestParam int postId, @RequestParam @NotBlank String body) throws GenericException{
+    public void editPostBody(@RequestParam int postId, @RequestParam String body) throws GenericException{
         postService.editBody(postId, body);
     }
 }
